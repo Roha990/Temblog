@@ -1,0 +1,16 @@
+{% extends "layout/basic.html" %}
+{%block nav%}
+<div class="col-md-6">
+    <div class="header_text">Список блогов </div>
+</div>
+{%endblock%}
+{% block content %}
+<div class="col-md-8">
+
+  {% for blog in blogs %}
+  <ul>
+    <li class="blog-item"><a href="{% url 'index' blog.pk %}">{{blog.first_name}} {{blog.last_name}}</a></li>
+  </ul>
+  {%endfor%}
+</div>
+{%endblock%}

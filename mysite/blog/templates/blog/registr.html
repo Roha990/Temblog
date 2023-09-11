@@ -1,0 +1,27 @@
+{% extends "layout/basic.html" %}
+{% block nav %}
+<div class="col-md-6">
+    <div class="header_text">Регистрация </div>
+</div>
+{% endblock  %}
+{% block content %}
+<div class="col-md-8">
+    <form action="" method="post">
+    <div><div>Логин</div>
+    <input type="text" id="username" name="username" required>
+    </div>
+    <div> <div>Имя</div>
+    <input type="text" id="first_name" name="first_name" required></div>
+    <div> <div>Фамилия</div>
+    <input type="text" id="last_name" name="last_name" required></div>
+    <div> <div>Электронная почта</div>
+    <input type="email" id="email" name="email" required></div>
+    <div> <div>Придумайте пароль</div>
+    <input type="password" id="password1" name="password1" required></div>
+    <div> <div>Повторите пароль</div>
+    <input type="password" id="password2" name="password2" required></div>
+        <div class="button_form"><input type="submit" value="Отправить" ></div>
+    {%csrf_token%}
+</form>
+</div>
+{% endblock %}

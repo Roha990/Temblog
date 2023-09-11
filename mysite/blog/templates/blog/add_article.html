@@ -1,0 +1,16 @@
+{% extends "layout/basic.html" %}
+{% block nav %}
+<div class="col-md-6">
+    <div class="header_text">Создание статьи </div>
+</div>
+{% endblock  %}
+{% block content %}
+<div class="col-md-8">
+    <form class="add_article" action="" method="post" enctype="multipart/form-data">
+    {{form.as_p}}
+    <input type="submit" value="Отправить">
+    {% csrf_token %}
+</form>
+</div>
+
+{% endblock %}

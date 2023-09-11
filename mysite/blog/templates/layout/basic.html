@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Temlog</title>
+    <link rel="stylesheet" href="{% static 'blog/bootstrap-reboot.min.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/bootstrap-grid.min.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/normalize.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/style.css' %}">
+</head>
+<body>
+<header>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2 header_wrapper">
+                <div class="header_text">TelBlog</div>
+            </div>
+            {%block nav%}
+            {%endblock %}
+            <div class="offset-md-2 col-md-2">
+                <div class="header_wrapper_random "><div class="header_text_random">Случайная статья</div></div>
+            </div>
+        </div>
+    </div>
+</header>
+    <section class="blog">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-2 nav">
+                <ul >
+                    <a href="{% url 'blog_list'%}" ><li>Список блогов</li></a>
+                    <div class="line"></div>
+                    {%if request.user.is_authenticated %}
+                    <a href="{%url 'my_page'%}">Мой блог</a>
+                    <div class="line"></div>
+                    <a href="{% url 'add_article' %}" ><li>Добавить статью</li></a>
+                    <div class="line"></div>
+                    <a href="{% url 'logout'%}" ><li>Выйти из учетной записи</li></a>
+                    <div class="line"></div>
+                    {% else %}
+                    <a href="{% url 'auth'%}" ><li>Войти в личный кабинет</li></a>
+                    <div class="line"></div>
+                    {% endif %}
+                    
+                </ul>
+                </div>
+    {% block content %}
+    {% endblock %}
+                <div class=" col-md-2">
+                    <article class="random_articles">
+                        {% for random_article in random_articles %}
+                        <div class="item_random_article">
+                                                    <img src="{{random_article.image.url}}" alt="article picture">
+                        <h4>{{random_article.title|truncatechars:10}}</h4>
+                        <div class="item_text">{{random_article.content|truncatechars:30}}</div>
+                        <div>
+                            <a href="{% url 'get_article' random_article.pk%}"><button>Читать далее</button></a>
+                        </div>
+                        </div>
+                    {% endfor %}
+                    </article>
+                </div>
+                </div>
+</div>
+</section>
+</body>
+</html>

@@ -1,0 +1,26 @@
+{% extends "layout/basic.html" %}
+{% block nav %}
+<div class="col-md-6">
+    <div class="header_text">Авторизация </div>
+</div>
+{% endblock  %}
+{% block content %}
+<div class="col-md-8">
+    <form action="" method="post">
+    <div>
+        Логин    </div>
+        <input type="text" id="username" name="username" required>
+
+    <div>
+        Пароль    </div>
+        <input type="password" id="password" name="password" required>
+
+    <div class="button_form">
+        <input type="submit" value="Отправить">
+    </div>
+    {% csrf_token %}
+</form>
+    <div>Еще не зарегистрованы? <a href="{% url 'register'%}">Зарегистрироваться</a></div>
+</div>
+
+{% endblock %}
